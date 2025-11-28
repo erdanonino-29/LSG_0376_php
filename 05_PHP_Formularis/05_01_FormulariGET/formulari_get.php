@@ -93,9 +93,11 @@
         echo "<h3>Resultat de la cerca:</h3>";
         
         // Obtenir i validar les dades
-        $cerca = isset($_GET['cerca']) ? htmlspecialchars(trim($_GET['cerca'])) : '';
-        $categoria = isset($_GET['categoria']) ? htmlspecialchars($_GET['categoria']) : '';
-        $resultats = isset($_GET['resultats']) ? (int)$_GET['resultats'] : 10;
+        // Seguretat: trim() elimina espais, htmlspecialchars() prevé XSS
+        // Nota: filter_input() també es pot usar però FILTER_SANITIZE_STRING està obsolet en PHP 8.1+
+        $cerca = isset($_GET['cerca']) ? htmlspecialchars(trim($_GET['cerca']), ENT_QUOTES, 'UTF-8') : '';
+        $categoria = isset($_GET['categoria']) ? htmlspecialchars($_GET['categoria'], ENT_QUOTES, 'UTF-8') : '';
+        $resultats = isset($_GET['resultats']) ? filter_var($_GET['resultats'], FILTER_VALIDATE_INT) ?: 10 : 10;
         
         echo "<p><strong>Terme cercat:</strong> " . ($cerca ? $cerca : "<em>cap</em>") . "</p>";
         echo "<p><strong>Categoria:</strong> " . ($categoria ? $categoria : "Totes") . "</p>";

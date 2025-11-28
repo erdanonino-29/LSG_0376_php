@@ -35,7 +35,10 @@ if ($accio === 'crear') {
     
     $missatge = "Cookies creades correctament!";
     
-    // Actualitzar $_COOKIE manualment per mostrar immediatament
+    // NOTA: Actualitzem $_COOKIE manualment NOMÉS per demostració immediata.
+    // En producció, no es recomana modificar $_COOKIE directament ja que
+    // representa les cookies enviades pel navegador. Les cookies reals
+    // estaran disponibles a la pròxima petició HTTP.
     $_COOKIE['nom_usuari'] = $nom_usuari;
     $_COOKIE['color_preferit'] = $color;
 }
@@ -46,7 +49,8 @@ if ($accio === 'eliminar') {
     setcookie('color_preferit', '', time() - 3600, '/');
     $missatge = "Cookies eliminades!";
     
-    // Actualitzar $_COOKIE manualment
+    // NOTA: Actualitzem $_COOKIE NOMÉS per demostració immediata.
+    // Els canvis reals a les cookies s'efectuaran a la pròxima petició.
     unset($_COOKIE['nom_usuari']);
     unset($_COOKIE['color_preferit']);
 }
