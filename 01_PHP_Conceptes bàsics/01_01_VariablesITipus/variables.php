@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Exemple 01_01: Variables i Tipus de Dades en PHP
  * 
@@ -56,4 +57,3 @@ echo "Tipus de \$edat: " . gettype($edat) . "<br>";
 echo "Tipus de \$altura: " . gettype($altura) . "<br>";
 echo "Tipus de \$es_estudiant: " . gettype($es_estudiant) . "<br>";
 echo "Tipus de \$colors: " . gettype($colors) . "<br>";
-?>
